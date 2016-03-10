@@ -1,0 +1,14 @@
+SELECT *, ST_X(ST_Centroid(geom)) AS "Long",  ST_Y(ST_Centroid(geom)) AS "Lat"
+FROM speeds
+INNER JOIN roads
+ON speeds.segmentid = roads.segmentid
+
+WHERE speeds.segmentid
+IN (
+	SELECT segmentid 
+	FROM roads 
+	WHERE roadname 
+	LIKE 'ON-404%' 
+	OR roadname
+	LIKE 'Don Valley Pky%')
+;
