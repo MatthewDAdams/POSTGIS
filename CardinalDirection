@@ -1,0 +1,12 @@
+CASE
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 0.0 THEN 'less than 0'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 22.5 THEN 'N'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 67.5 THEN 'NE'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 112.5 THEN 'E'
+  WHEN  degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 157.5 THEN 'SE'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 202.5 THEN 'S'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 247.5 THEN 'SW'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom)))))< 292.5 THEN 'W'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) < 337.5 THEN 'NW'
+  WHEN degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom))))) <= 360.0 THEN 'N'
+END AS cardinal
