@@ -1,0 +1,2 @@
+SELECT degrees(ST_AZIMUTH(ST_ASTEXT(ST_STARTPOINT(ST_LineMerge(geom))),ST_ASTEXT(ST_ENDPOINT(ST_LineMerge(geom)))))
+-- Assumes lines are stored as multilinestrings
