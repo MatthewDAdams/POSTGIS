@@ -1,0 +1,16 @@
+SELECT *, ST_X(ST_Centroid(geom)) AS "Long",  ST_Y(ST_Centroid(geom)) AS "Lat"
+FROM speeds
+INNER JOIN roads
+ON speeds.segmentid = roads.segmentid
+INNER JOIN ontroads
+ON  speeds.segmentid = ontroads.segmentid
+
+WHERE speeds.segmentid
+IN (
+	SELECT segmentid 
+	FROM roads 
+	WHERE roadname IN  ('ON-403 E', 'ON-403 W', 'Don Valley Pky N','Don Valley Pky S','ON-404 N','ON-404 S','ON-427 N','ON-427 S','Gardiner Expy E','Gardiner Expy W','Highway 6','King''s Highway 6','ON-6','Highway 7','Highway 7 E','Highway 7 W','King''s Highway 7','King''s Highway 7 E','King''s Highway 7 W','King''s Highway 7A','ON-7','Highway 8','King''s Highway 8','ON-8','ON-8 E','ON-8 W','Regional Road 8','Queen Elizabeth Way
+','Allen Rd')
+	)
+AND state = 'Ontario'
+;
